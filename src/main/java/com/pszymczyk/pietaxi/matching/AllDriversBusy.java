@@ -11,4 +11,11 @@ public class AllDriversBusy {
     public SagaId getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "AllDriversBusy{" +
+                "id=" + id +
+                '}';
+    }
 }

@@ -43,4 +43,16 @@ class RideFinished {
     public Instant getEndTime() {
         return endTime;
     }
+
+    @Override
+    public String toString() {
+        return "RideFinished{" +
+                "rideId=" + rideId +
+                ", passengerId=" + passengerId +
+                ", driverId=" + driverId +
+                ", distance=" + distance +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
+    }
 }

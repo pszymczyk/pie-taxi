@@ -7,4 +7,11 @@ class CorruptedRideFinished {
     public CorruptedRideFinished(RideId rideId) {
         this.rideId = rideId;
     }
+
+    @Override
+    public String toString() {
+        return "CorruptedRideFinished{" +
+                "rideId=" + rideId +
+                '}';
+    }
 }

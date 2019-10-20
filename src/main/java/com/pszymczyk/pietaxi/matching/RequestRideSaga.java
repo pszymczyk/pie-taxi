@@ -46,10 +46,10 @@ class RequestRideSaga {
         if (driverId != null) {
             state = State.COMPLETED;
             requestRideSagaEvents.publish(new RideAccepted(passengerId, driverId, friends));
+        } else {
+            state = State.TIMEOUT;
+            requestRideSagaEvents.publish(new AllDriversBusy(id));
         }
-
-        state = State.TIMEOUT;
-        requestRideSagaEvents.publish(new AllDriversBusy(id));
     }
 
     private void completeIfPossible() {
@@ -57,5 +57,16 @@ class RequestRideSaga {
             state = State.COMPLETED;
             requestRideSagaEvents.publish(new RideAccepted(passengerId, driverId, friends));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "RequestRideSaga{" +
+                "id=" + id +
+                ", passengerId=" + passengerId +
+                ", friends=" + friends +
+                ", driverId=" + driverId +
+                ", state=" + state +
+                '}';
     }
 }

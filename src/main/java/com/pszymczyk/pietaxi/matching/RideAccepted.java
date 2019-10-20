@@ -28,4 +28,13 @@ public class RideAccepted {
     public List<PassengerId> getFriends() {
         return friends;
     }
+
+    @Override
+    public String toString() {
+        return "RideAccepted{" +
+                "passengerId=" + passengerId +
+                ", driverId=" + driverId +
+                ", friends=" + friends +
+                '}';
+    }
 }

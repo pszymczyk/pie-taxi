@@ -72,14 +72,16 @@ class SageRestController {
     @PostMapping(path = "sagas/{sagaId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
     void handleEvent(@RequestBody SagaEvent sagaEvent, @PathVariable String sagaId) {
-        RequestRideSaga saga = requestRideSagas.findBy(new SagaId(UUID.fromString(sagaId)));
+        RequestRideSaga saga = requestRideSagas.findBy(new SagaId(UUID.fromString(sagaId))).orElseThrow(() -> new IllegalArgumentException("Saga not found"));
         if ("DriverAccepted".equals(sagaEvent.type)) {
             saga.handle(new DriverAccepted(new DriverId(sagaEvent.entityId)));
         } else if ("FriendFound".equals(sagaEvent.type)) {
             saga.handle(new FriendFound(new PassengerId(sagaEvent.entityId)));
+        } else if ("Timeout".contains(sagaEvent.type)) {
+            saga.timeout();
+        } else {
+            throw new IllegalArgumentException("Event " + sagaEvent.type + " unknown");
         }
-
-        throw new IllegalArgumentException("Event " + sagaEvent.type + " unknown");
 
     }
 }

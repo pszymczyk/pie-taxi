@@ -3,6 +3,9 @@ package com.pszymczyk.pietaxi;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
+@Component
 class RideFactory {
 
     private final BillingApi billingApi;

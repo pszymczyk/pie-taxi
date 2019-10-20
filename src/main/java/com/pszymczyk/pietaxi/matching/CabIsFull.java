@@ -11,4 +11,11 @@ class CabIsFull {
     public SagaId getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "CabIsFull{" +
+                "id=" + id +
+                '}';
+    }
 }
