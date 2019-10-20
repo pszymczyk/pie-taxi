@@ -1,18 +1,17 @@
 package com.pszymczyk.pietaxi;
 
 import java.util.Objects;
-import java.util.UUID;
 
-abstract class EntityId {
+abstract class EntityId<ID> {
 
-    private final UUID uuid;
+    private final ID id;
 
-    EntityId(UUID uuid) {
-        this.uuid = uuid;
+    EntityId(ID id) {
+        this.id = id;
     }
 
-    UUID getUuid() {
-        return uuid;
+    ID getId() {
+        return id;
     }
 
     @Override
@@ -24,11 +23,11 @@ abstract class EntityId {
             return false;
         }
         EntityId entityId = (EntityId) o;
-        return Objects.equals(uuid, entityId.uuid);
+        return Objects.equals(id, entityId.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid);
+        return Objects.hash(id);
     }
 }

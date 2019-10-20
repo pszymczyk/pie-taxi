@@ -14,18 +14,26 @@ class Ride {
             this.time = time;
             this.location = location;
         }
+
+        public Instant getTime() {
+            return time;
+        }
+
+        public Location getLocation() {
+            return location;
+        }
     }
 
-    private final RideId rideId;
-    private final PassengerId passengerId;
-    private final DriverId driverId;
-    private final DistanceCalculationPrecisionPolicy distanceCalculationPrecisionPolicy;
+    final RideId rideId;
+    final PassengerId passengerId;
+    final DriverId driverId;
+    final DistanceCalculationRequirementsPolicy distanceCalculationRequirementsPolicy;
 
-    Ride(RideId rideId, PassengerId passengerId, DriverId driverId, DistanceCalculationPrecisionPolicy distanceCalculationPrecisionPolicy) {
+    Ride(RideId rideId, PassengerId passengerId, DriverId driverId, DistanceCalculationRequirementsPolicy distanceCalculationRequirementsPolicy) {
         this.rideId = rideId;
         this.passengerId = passengerId;
         this.driverId = driverId;
-        this.distanceCalculationPrecisionPolicy = distanceCalculationPrecisionPolicy;
+        this.distanceCalculationRequirementsPolicy = distanceCalculationRequirementsPolicy;
     }
 
     private final LinkedList<PingLocation> locations = new LinkedList<>();
@@ -56,7 +64,7 @@ class Ride {
             locations.add(new PingLocation(clock.instant(), location));
         }
 
-        if (locations.size() < 2 || !distanceCalculationPrecisionPolicy.enoughDataToCalculateDistance(locations)) {
+        if (locations.size() < 2 || !distanceCalculationRequirementsPolicy.enoughDataToCalculateDistance(locations)) {
             rideEvents.publish(new CorruptedRideFinished(rideId));
         }
 
@@ -72,7 +80,6 @@ class Ride {
             distance = distance.and(new Distance(x.location, ping.location));
             x = ping;
         }
-
 
         rideEvents.publish(new RideFinished(rideId, passengerId, driverId, distance, startTime, endTime));
     }

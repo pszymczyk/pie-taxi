@@ -2,7 +2,9 @@ package com.pszymczyk.pietaxi;
 
 import java.util.List;
 
-interface DistanceCalculationPrecisionPolicy {
+interface DistanceCalculationRequirementsPolicy {
+
+    String name();
 
     boolean enoughDataToCalculateDistance(List<Ride.PingLocation> locations);
 }

@@ -1,10 +1,8 @@
 package com.pszymczyk.pietaxi;
 
-import java.util.UUID;
+class PassengerId extends EntityId<String> {
 
-class PassengerId extends EntityId {
-
-    PassengerId(UUID uuid) {
-        super(uuid);
+    PassengerId(String id) {
+        super(id);
     }
 }
