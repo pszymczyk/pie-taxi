@@ -1,9 +1,12 @@
 package com.pszymczyk.pietaxi;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 class TestFixtures {
+
+    private static final Random random = new Random(99);
 
     static Ride newRide() {
         return newRide(new DistanceCalculationRequirementsPolicy() {
@@ -24,15 +27,15 @@ class TestFixtures {
     }
 
     static DriverId randomDriver() {
-        return new DriverId("Test driver");
+        return new DriverId("Test driver " + random.nextInt());
     }
 
     static PassengerId randomPassenger() {
-        return new PassengerId("Test user");
+        return new PassengerId("Test user " + random.nextInt());
     }
 
     static Location randomLocation() {
-        return new Location(0,0);
+        return new Location(random.nextInt(), random.nextInt());
     }
 
 }

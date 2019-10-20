@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.pszymczyk.pietaxi.DriverId;
+import com.pszymczyk.pietaxi.Location;
 import com.pszymczyk.pietaxi.PassengerId;
 
 class RequestRideSaga {
@@ -17,16 +18,18 @@ class RequestRideSaga {
 
     final SagaId id;
     final PassengerId passengerId;
+    final Location location;
     final List<PassengerId> friends = new ArrayList<>();
     final RequestRideSagaEvents requestRideSagaEvents;
 
     DriverId driverId;
     State state = State.ACTIVE;
 
-    RequestRideSaga(PassengerId passengerId, RequestRideSagaEvents requestRideSagaEvents) {
+    RequestRideSaga(PassengerId passengerId, Location location, RequestRideSagaEvents requestRideSagaEvents) {
         this.id = new SagaId(UUID.randomUUID());
-        this.requestRideSagaEvents = requestRideSagaEvents;
         this.passengerId = passengerId;
+        this.location = location;
+        this.requestRideSagaEvents = requestRideSagaEvents;
     }
 
     void handle(DriverAccepted driverAccepted) {
@@ -45,7 +48,7 @@ class RequestRideSaga {
     void timeout() {
         if (driverId != null) {
             state = State.COMPLETED;
-            requestRideSagaEvents.publish(new RideAccepted(passengerId, driverId, friends));
+            requestRideSagaEvents.publish(new RideAccepted(passengerId, driverId, location, friends));
         } else {
             state = State.TIMEOUT;
             requestRideSagaEvents.publish(new AllDriversBusy(id));
@@ -55,7 +58,7 @@ class RequestRideSaga {
     private void completeIfPossible() {
         if (friends.size() >= 2 && driverId != null) {
             state = State.COMPLETED;
-            requestRideSagaEvents.publish(new RideAccepted(passengerId, driverId, friends));
+            requestRideSagaEvents.publish(new RideAccepted(passengerId, driverId, location, friends));
         }
     }
 

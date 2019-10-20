@@ -28,6 +28,7 @@ class Ride {
     final PassengerId passengerId;
     final DriverId driverId;
     final DistanceCalculationRequirementsPolicy distanceCalculationRequirementsPolicy;
+    final LinkedList<PingLocation> locations = new LinkedList<>();
 
     Ride(RideId rideId, PassengerId passengerId, DriverId driverId, DistanceCalculationRequirementsPolicy distanceCalculationRequirementsPolicy) {
         this.rideId = rideId;
@@ -35,8 +36,6 @@ class Ride {
         this.driverId = driverId;
         this.distanceCalculationRequirementsPolicy = distanceCalculationRequirementsPolicy;
     }
-
-    private final LinkedList<PingLocation> locations = new LinkedList<>();
 
     void start(Location location, Clock clock) {
         if (location == null) {
@@ -60,6 +59,8 @@ class Ride {
     }
 
     void stop(Location location, Clock clock, RideEvents rideEvents){
+        LinkedList<PingLocation> locations = new LinkedList<>(this.locations);
+
         if (location != null) {
             locations.add(new PingLocation(clock.instant(), location));
         }

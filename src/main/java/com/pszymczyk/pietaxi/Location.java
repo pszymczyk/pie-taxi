@@ -2,7 +2,7 @@ package com.pszymczyk.pietaxi;
 
 import java.util.Objects;
 
-class Location {
+public class Location {
 
     private final double pickLongitude;
     private final double pickLatitude;

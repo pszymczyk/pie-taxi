@@ -7,4 +7,6 @@ interface RideRepository {
     void save(Ride ride);
 
     Optional<Ride> findById(RideId rideId);
+
+    void delete(Ride ride);
 }

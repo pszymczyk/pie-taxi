@@ -16,7 +16,7 @@ class RideAcceptedListener {
 
     @EventListener
     public void onRideAccepted(RideAccepted rideAccepted) {
-        ridesApplicationService.startNewRide(new StartNewRideCommand(rideAccepted.getPassengerId(), rideAccepted.getDriverId()));
+        ridesApplicationService.startNewRide(new StartNewRideCommand(rideAccepted.getPassengerId(), rideAccepted.getDriverId(), rideAccepted.getLocation()));
     }
 
 }

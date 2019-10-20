@@ -20,4 +20,9 @@ class InMemoryRideRepository implements RideRepository {
     public Optional<Ride> findById(RideId rideId) {
         return Optional.ofNullable(storage.get(rideId));
     }
+
+    @Override
+    public void delete(Ride ride) {
+        storage.remove(ride.rideId);
+    }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pszymczyk.pietaxi.DriverId;
+import com.pszymczyk.pietaxi.Location;
 import com.pszymczyk.pietaxi.PassengerId;
 
 @RestController
@@ -28,6 +29,8 @@ class SageRestController {
 
     static class NewSagaRequest {
         String passengerId;
+        Integer longitude;
+        Integer latitude;
 
         public String getPassengerId() {
             return passengerId;
@@ -36,13 +39,33 @@ class SageRestController {
         public void setPassengerId(String passengerId) {
             this.passengerId = passengerId;
         }
+
+        public Integer getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(Integer longitude) {
+            this.longitude = longitude;
+        }
+
+        public Integer getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(Integer latitude) {
+            this.latitude = latitude;
+        }
     }
 
     @PostMapping(path = "/sagas", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
     Object newSaga(@RequestBody NewSagaRequest newSagaRequest) {
-        RequestRideSaga saga = new RequestRideSaga(new PassengerId(newSagaRequest.passengerId), requestRideSagaEvents);
+        RequestRideSaga saga = new RequestRideSaga(
+                new PassengerId(newSagaRequest.passengerId),
+                new Location(newSagaRequest.longitude, newSagaRequest.latitude),
+                requestRideSagaEvents);
         requestRideSagas.save(saga);
+
         Map<String, String> response = new HashMap<>();
         response.put("sagaId", saga.id.getId().toString());
         return response;

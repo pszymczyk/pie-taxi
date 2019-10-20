@@ -19,9 +19,11 @@ class RidesApplicationService {
         this.rideEvents = rideEvents;
     }
 
-    void startNewRide(StartNewRideCommand startNewRideCommand) {
+    RideId startNewRide(StartNewRideCommand startNewRideCommand) {
         Ride ride = rideFactory.create(startNewRideCommand.getPassengerId(), startNewRideCommand.getDriverId());
+        ride.start(startNewRideCommand.getLocation(), clock);
         rideRepository.save(ride);
+        return ride.rideId;
     }
 
     void updateLocation(UpdateLocationCommand updateLocationCommand) {
@@ -32,5 +34,6 @@ class RidesApplicationService {
     void stop(StopRideCommand stopRideCommand) {
         Ride ride = rideRepository.findById(stopRideCommand.getRideId()).orElseThrow(RideNotFound::new);
         ride.stop(stopRideCommand.getLocation(), clock, rideEvents);
+        rideRepository.delete(ride);
     }
 }

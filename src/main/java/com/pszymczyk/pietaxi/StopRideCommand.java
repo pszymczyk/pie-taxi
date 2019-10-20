@@ -11,7 +11,7 @@ class StopRideCommand {
     }
 
     RideId getRideId() {
-        return null;
+        return rideId;
     }
 
     Location getLocation() {
