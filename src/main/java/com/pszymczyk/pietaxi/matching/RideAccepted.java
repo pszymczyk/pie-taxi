@@ -5,7 +5,7 @@ import java.util.List;
 import com.pszymczyk.pietaxi.DriverId;
 import com.pszymczyk.pietaxi.PassengerId;
 
-class RideAccepted {
+public class RideAccepted {
 
     private final PassengerId passengerId;
     private final DriverId driverId;

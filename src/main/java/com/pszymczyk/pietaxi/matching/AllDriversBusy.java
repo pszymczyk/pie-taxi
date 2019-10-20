@@ -1,6 +1,6 @@
 package com.pszymczyk.pietaxi.matching;
 
-class AllDriversBusy {
+public class AllDriversBusy {
 
     private final SagaId id;
 

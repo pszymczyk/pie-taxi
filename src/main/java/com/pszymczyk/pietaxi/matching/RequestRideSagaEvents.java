@@ -1,6 +1,6 @@
 package com.pszymczyk.pietaxi.matching;
 
-interface RequestRideSagaEvents {
+public interface RequestRideSagaEvents {
 
     void publish(AllDriversBusy allDriversBusy);
 
