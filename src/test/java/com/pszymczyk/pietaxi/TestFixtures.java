@@ -24,7 +24,7 @@ class TestFixtures {
     }
 
     static DriverId randomDriver() {
-        return new DriverId(UUID.randomUUID());
+        return new DriverId("Test driver");
     }
 
     static PassengerId randomPassenger() {

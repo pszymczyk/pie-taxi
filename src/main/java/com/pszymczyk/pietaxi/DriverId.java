@@ -1,10 +1,8 @@
 package com.pszymczyk.pietaxi;
 
-import java.util.UUID;
+public class DriverId extends EntityId<String> {
 
-class DriverId extends EntityId<UUID> {
-
-    DriverId(UUID uuid) {
-        super(uuid);
+    public DriverId(String id) {
+        super(id);
     }
 }

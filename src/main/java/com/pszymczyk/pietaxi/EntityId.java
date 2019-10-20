@@ -2,15 +2,15 @@ package com.pszymczyk.pietaxi;
 
 import java.util.Objects;
 
-abstract class EntityId<ID> {
+public abstract class EntityId<ID> {
 
     private final ID id;
 
-    EntityId(ID id) {
+    public EntityId(ID id) {
         this.id = id;
     }
 
-    ID getId() {
+    public ID getId() {
         return id;
     }
 

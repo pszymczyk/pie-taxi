@@ -1,8 +1,8 @@
 package com.pszymczyk.pietaxi;
 
-class PassengerId extends EntityId<String> {
+public class PassengerId extends EntityId<String> {
 
-    PassengerId(String id) {
+    public PassengerId(String id) {
         super(id);
     }
 }
