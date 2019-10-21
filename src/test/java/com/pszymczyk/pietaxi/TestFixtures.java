@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-class TestFixtures {
+public class TestFixtures {
 
     private static final Random random = new Random(99);
 
-    static Ride newRide() {
+    public static Ride newRide() {
         return newRide(new DistanceCalculationRequirementsPolicy() {
             @Override
             public String name() {
@@ -22,19 +22,19 @@ class TestFixtures {
         });
     }
 
-    static Ride newRide(DistanceCalculationRequirementsPolicy precisionPolicy) {
+    public static Ride newRide(DistanceCalculationRequirementsPolicy precisionPolicy) {
         return new Ride(new RideId(UUID.randomUUID()), randomPassenger(), randomDriver(), precisionPolicy);
     }
 
-    static DriverId randomDriver() {
+    public static DriverId randomDriver() {
         return new DriverId("Test driver " + random.nextInt());
     }
 
-    static PassengerId randomPassenger() {
+    public static PassengerId randomPassenger() {
         return new PassengerId("Test user " + random.nextInt());
     }
 
-    static Location randomLocation() {
+    public static Location randomLocation() {
         return new Location(random.nextInt(), random.nextInt());
     }
 

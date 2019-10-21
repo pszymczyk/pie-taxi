@@ -38,7 +38,10 @@ class RequestRideSaga {
     }
 
     void handle(FriendFound friendFound) {
-        friends.add(friendFound.getPassengerId());
+        if (friends.size() < 2) {
+            friends.add(friendFound.getPassengerId());
+        }
+
         if (friends.size() >= 2) {
             requestRideSagaEvents.publish(new CabIsFull(id));
         }
