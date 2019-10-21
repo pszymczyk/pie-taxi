@@ -1,4 +1,4 @@
-package com.pszymczyk.pietaxi.matching;
+package com.pszymczyk.pietaxi.match;
 
 import com.pszymczyk.pietaxi.DriverId;
 

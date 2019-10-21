@@ -1,4 +1,4 @@
-package com.pszymczyk.pietaxi.matching;
+package com.pszymczyk.pietaxi.match;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

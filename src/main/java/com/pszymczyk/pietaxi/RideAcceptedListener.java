@@ -3,7 +3,7 @@ package com.pszymczyk.pietaxi;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import com.pszymczyk.pietaxi.matching.RideAccepted;
+import com.pszymczyk.pietaxi.match.RideAccepted;
 
 @Component
 class RideAcceptedListener {

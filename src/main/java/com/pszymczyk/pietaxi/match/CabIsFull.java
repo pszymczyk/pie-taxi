@@ -1,10 +1,10 @@
-package com.pszymczyk.pietaxi.matching;
+package com.pszymczyk.pietaxi.match;
 
-public class AllDriversBusy {
+class CabIsFull {
 
     private final SagaId id;
 
-    AllDriversBusy(SagaId id) {
+    CabIsFull(SagaId id) {
         this.id = id;
     }
 
@@ -14,7 +14,7 @@ public class AllDriversBusy {
 
     @Override
     public String toString() {
-        return "AllDriversBusy{" +
+        return "CabIsFull{" +
                 "id=" + id +
                 '}';
     }
