@@ -13,6 +13,6 @@ class DefaultDistanceCalculationPrecisionPolicy implements DistanceCalculationRe
 
     @Override
     public boolean enoughDataToCalculateDistance(List<Ride.PingLocation> locations) {
-        return locations.size() > 3;
+        return locations.size() > 2;
     }
 }

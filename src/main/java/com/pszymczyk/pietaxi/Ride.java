@@ -65,7 +65,7 @@ class Ride {
             locations.add(new PingLocation(clock.instant(), location));
         }
 
-        if (locations.size() < 2 || !distanceCalculationRequirementsPolicy.enoughDataToCalculateDistance(locations)) {
+        if (!distanceCalculationRequirementsPolicy.enoughDataToCalculateDistance(locations)) {
             rideEvents.publish(new CorruptedRideFinished(rideId));
         }
 

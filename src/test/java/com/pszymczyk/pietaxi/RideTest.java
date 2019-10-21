@@ -73,6 +73,9 @@ class RideTest {
         //when
         ride.start(new Location(1, 1), clock);
 
+        //and
+        ride.ping(new Location(2, 2), clock);
+
         //and when
         ride.stop(new Location(3, 3), clock, testRideEvents);
 

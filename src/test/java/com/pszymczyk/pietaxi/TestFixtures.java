@@ -9,17 +9,7 @@ public class TestFixtures {
     private static final Random random = new Random(99);
 
     public static Ride newRide() {
-        return newRide(new DistanceCalculationRequirementsPolicy() {
-            @Override
-            public String name() {
-                return "always true";
-            }
-
-            @Override
-            public boolean enoughDataToCalculateDistance(List<Ride.PingLocation> locations) {
-                return true;
-            }
-        });
+        return newRide(new DefaultDistanceCalculationPrecisionPolicy());
     }
 
     public static Ride newRide(DistanceCalculationRequirementsPolicy precisionPolicy) {
