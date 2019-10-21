@@ -83,7 +83,7 @@ class RideTest {
     @Test
     void Should_send_info_about_corrupted_data_when_less_then_two_pings() {
         //given
-        Ride ride = TestFixtures.newRide(alwaysFalsePolicy());
+        Ride ride = TestFixtures.newRide();
         TestRideEvents testRideEvents = new TestRideEvents();
 
         //when
