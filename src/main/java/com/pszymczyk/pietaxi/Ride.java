@@ -27,8 +27,8 @@ class Ride {
     final RideId rideId;
     final PassengerId passengerId;
     final DriverId driverId;
-    final LinkedList<PingLocation> locations = new LinkedList<>();
     final DistanceCalculationRequirementsPolicy distanceCalculationRequirementsPolicy;
+    final LinkedList<PingLocation> locations = new LinkedList<>();
 
     Ride(RideId rideId, PassengerId passengerId, DriverId driverId, DistanceCalculationRequirementsPolicy distanceCalculationRequirementsPolicy) {
         this.rideId = rideId;
@@ -65,7 +65,7 @@ class Ride {
             locations.add(new PingLocation(clock.instant(), location));
         }
 
-        if (locations.size() < 2) {
+        if (!distanceCalculationRequirementsPolicy.enoughDataToCalculateDistance(locations)) {
             rideEvents.publish(new CorruptedRideFinished(rideId));
         }
 
