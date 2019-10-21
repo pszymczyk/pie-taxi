@@ -5,6 +5,7 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import org.junit.jupiter.api.Test;
@@ -64,6 +65,25 @@ class RideTest {
     }
 
     @Test
+    void Should_send_info_about_corrupted_data_when_policy_said_that_there_is_no_enough_pings_to_start() {
+        //given
+        Ride ride = TestFixtures.newRide(alwaysFalsePolicy());
+        TestRideEvents testRideEvents = new TestRideEvents();
+
+        //when
+        ride.start(new Location(1, 1), clock);
+
+        //and
+        ride.ping(new Location(2, 2), clock);
+
+        //and when
+        ride.stop(new Location(3, 3), clock, testRideEvents);
+
+        //then
+        assertThat(testRideEvents.corruptedRideFinishedEvents).hasSize(1);
+    }
+
+    @Test
     void Should_send_info_about_corrupted_data_when_less_then_two_pings() {
         //given
         Ride ride = TestFixtures.newRide();
@@ -108,5 +128,19 @@ class RideTest {
         public void publish(RideFinished rideFinished) {
             rideFinishedEvents.add(rideFinished);
         }
+    }
+
+    private DistanceCalculationRequirementsPolicy alwaysFalsePolicy() {
+        return new DistanceCalculationRequirementsPolicy() {
+            @Override
+            public String name() {
+                return "always false";
+            }
+
+            @Override
+            public boolean enoughDataToCalculateDistance(List<Ride.PingLocation> locations) {
+                return false;
+            }
+        };
     }
 }

@@ -1,13 +1,19 @@
 package com.pszymczyk.pietaxi;
 
+import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 public class TestFixtures {
 
     private static final Random random = new Random(99);
 
     public static Ride newRide() {
-        throw new TODO();
+        return newRide(new DefaultDistanceCalculationPrecisionPolicy());
+    }
+
+    public static Ride newRide(DistanceCalculationRequirementsPolicy precisionPolicy) {
+        return new Ride(new RideId(UUID.randomUUID()), randomPassenger(), randomDriver(), precisionPolicy);
     }
 
     public static DriverId randomDriver() {
