@@ -1,4 +1,4 @@
-package com.pszymczyk.pietaxi;
+package com.pszymczyk.pietaxi.billing;
 
 import java.time.Clock;
 
@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class PieTaxiApplication {
+public class BillingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PieTaxiApplication.class, args);
+		SpringApplication.run(BillingApplication.class, args);
 	}
 
 	@Bean

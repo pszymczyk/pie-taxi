@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pszymczyk.pietaxi.PassengerId;
-import com.pszymczyk.pietaxi.rides.DriverId;
-import com.pszymczyk.pietaxi.rides.Location;
+import com.pszymczyk.pietaxi.model.PassengerId;
+import com.pszymczyk.pietaxi.rides.traffic.model.DriverId;
+import com.pszymczyk.pietaxi.rides.traffic.model.Location;
 
 @RestController
 class SageRestController {

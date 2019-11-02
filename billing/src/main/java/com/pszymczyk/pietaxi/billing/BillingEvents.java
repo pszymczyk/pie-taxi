@@ -7,3 +7,13 @@ interface BillingEvents {
     void publish(PassengerAccountBlocked passengerAccountBlocked);
 
 }
+
+class PassengerAccountActivated {
+
+}
+
+class PassengerAccountBlocked {
+
+}
+
+

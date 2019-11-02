@@ -4,9 +4,9 @@ import java.util.LinkedList;
 
 import org.junit.jupiter.api.Test;
 
-import static com.pszymczyk.pietaxi.rides.TestFixtures.randomDriver;
-import static com.pszymczyk.pietaxi.rides.TestFixtures.randomLocation;
-import static com.pszymczyk.pietaxi.rides.TestFixtures.randomPassenger;
+import static com.pszymczyk.pietaxi.rides.traffic.TestFixtures.randomDriver;
+import static com.pszymczyk.pietaxi.rides.traffic.TestFixtures.randomLocation;
+import static com.pszymczyk.pietaxi.rides.traffic.TestFixtures.randomPassenger;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RequestRideSagaTest {

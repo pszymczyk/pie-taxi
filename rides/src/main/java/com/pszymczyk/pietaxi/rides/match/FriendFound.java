@@ -1,6 +1,6 @@
 package com.pszymczyk.pietaxi.rides.match;
 
-import com.pszymczyk.pietaxi.PassengerId;
+import com.pszymczyk.pietaxi.model.PassengerId;
 
 class FriendFound {
 

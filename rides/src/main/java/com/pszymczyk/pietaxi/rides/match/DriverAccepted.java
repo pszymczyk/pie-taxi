@@ -1,6 +1,6 @@
 package com.pszymczyk.pietaxi.rides.match;
 
-import com.pszymczyk.pietaxi.rides.DriverId;
+import com.pszymczyk.pietaxi.rides.traffic.model.DriverId;
 
 class DriverAccepted {
 

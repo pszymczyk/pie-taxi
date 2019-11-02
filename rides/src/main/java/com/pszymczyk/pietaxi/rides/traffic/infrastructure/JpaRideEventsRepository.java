@@ -1,0 +1,113 @@
+package com.pszymczyk.pietaxi.rides.traffic.infrastructure;
+
+import java.time.Instant;
+import java.util.UUID;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.springframework.stereotype.Component;
+
+import com.pszymczyk.pietaxi.rides.traffic.model.CorruptedRideFinished;
+import com.pszymczyk.pietaxi.rides.traffic.model.RideEvents;
+import com.pszymczyk.pietaxi.rides.traffic.model.RideFinished;
+
+@Component
+class JpaRideEventsRepository implements RideEvents {
+
+    private final RideEventsEntityCrudRepository rideEventsEntityCrudRepository;
+    private final Serde serde;
+
+    public JpaRideEventsRepository(RideEventsEntityCrudRepository rideEventsEntityCrudRepository, Serde serde) {
+        this.rideEventsEntityCrudRepository = rideEventsEntityCrudRepository;
+        this.serde = serde;
+    }
+
+    @Override
+    public void publish(CorruptedRideFinished corruptedRideFinished) {
+        JpaRideEventsEntity jpaRideEventsEntity = new JpaRideEventsEntity();
+        jpaRideEventsEntity.setEventId(corruptedRideFinished.getEventId());
+        jpaRideEventsEntity.setOccurrenceTime(corruptedRideFinished.getOccurrenceTime());
+        jpaRideEventsEntity.setType("CorruptedRideFinished");
+        jpaRideEventsEntity.setPayload(serde.serialize(corruptedRideFinished));
+        rideEventsEntityCrudRepository.save(jpaRideEventsEntity);
+    }
+
+    @Override
+    public void publish(RideFinished rideFinished) {
+        JpaRideEventsEntity jpaRideEventsEntity = new JpaRideEventsEntity();
+        jpaRideEventsEntity.setEventId(rideFinished.getEventId());
+        jpaRideEventsEntity.setOccurrenceTime(rideFinished.getOccurrenceTime());
+        jpaRideEventsEntity.setType("RideFinished");
+        jpaRideEventsEntity.setPayload(serde.serialize(rideFinished));
+        rideEventsEntityCrudRepository.save(jpaRideEventsEntity);
+    }
+}
+
+@Entity
+class JpaRideEventsEntity {
+
+    @Id
+    @GeneratedValue
+    private long id;
+
+    private UUID eventId;
+
+    private Instant occurrenceTime;
+
+    private String type;
+
+    private Instant processedTime;
+
+    private String payload;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public UUID getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(UUID eventId) {
+        this.eventId = eventId;
+    }
+
+    public Instant getOccurrenceTime() {
+        return occurrenceTime;
+    }
+
+    public void setOccurrenceTime(Instant occurrenceTime) {
+        this.occurrenceTime = occurrenceTime;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Instant getProcessedTime() {
+        return processedTime;
+    }
+
+    public void setProcessedTime(Instant processedTime) {
+        this.processedTime = processedTime;
+    }
+
+    public String getPayload() {
+        return payload;
+    }
+
+    public void setPayload(String payload) {
+        this.payload = payload;
+    }
+}
+

@@ -23,8 +23,8 @@ class InMemoryRequestRideSagas implements RequestRideSagas {
         storage.put(saga.id, saga);
     }
 
-    @Scheduled(fixedRate = 5000)
-    public void printData() {
-        MapUtils.verbosePrint(System.out, "Request rides", storage);
-    }
+    // @Scheduled(fixedRate = 5000)
+    // public void printData() {
+    //     MapUtils.verbosePrint(System.out, "Request rides", storage);
+    // }
 }
