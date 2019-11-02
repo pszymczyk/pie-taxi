@@ -3,7 +3,7 @@ package com.pszymczyk.pietaxi.rides;
 import org.springframework.stereotype.Component;
 
 @Component
-class FakeBillingApi implements BillingApi {
+class AcceptAllPassengersBillingApi implements BillingApi {
 
     @Override
     public Status checkPassengerAccount(PassengerId passengerId) {
