@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
+import com.pszymczyk.pietaxi.PassengerId;
+
 @Component
 class RideFactory {
 

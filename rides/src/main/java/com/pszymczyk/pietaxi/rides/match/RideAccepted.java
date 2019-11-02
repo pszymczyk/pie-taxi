@@ -2,9 +2,9 @@ package com.pszymczyk.pietaxi.rides.match;
 
 import java.util.List;
 
+import com.pszymczyk.pietaxi.PassengerId;
 import com.pszymczyk.pietaxi.rides.DriverId;
 import com.pszymczyk.pietaxi.rides.Location;
-import com.pszymczyk.pietaxi.rides.PassengerId;
 
 public class RideAccepted {
 

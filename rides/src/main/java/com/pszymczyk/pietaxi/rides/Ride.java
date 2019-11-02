@@ -3,6 +3,10 @@ package com.pszymczyk.pietaxi.rides;
 import java.time.Clock;
 import java.time.Instant;
 import java.util.LinkedList;
+import java.util.List;
+
+import com.pszymczyk.pietaxi.PassengerId;
+import com.pszymczyk.pietaxi.Version;
 
 class Ride {
 
@@ -28,7 +32,9 @@ class Ride {
     final PassengerId passengerId;
     final DriverId driverId;
     final DistanceCalculationRequirementsPolicy distanceCalculationRequirementsPolicy;
-    final LinkedList<PingLocation> locations = new LinkedList<>();
+    final List<PingLocation> locations = new LinkedList<>();
+
+    Version version;
 
     Ride(RideId rideId, PassengerId passengerId, DriverId driverId, DistanceCalculationRequirementsPolicy distanceCalculationRequirementsPolicy) {
         this.rideId = rideId;
@@ -67,6 +73,7 @@ class Ride {
 
         if (!distanceCalculationRequirementsPolicy.enoughDataToCalculateDistance(locations)) {
             rideEvents.publish(new CorruptedRideFinished(rideId));
+            return;
         }
 
         PingLocation x = locations.poll();

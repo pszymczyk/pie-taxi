@@ -2,6 +2,8 @@ package com.pszymczyk.pietaxi.rides;
 
 import java.time.Instant;
 
+import com.pszymczyk.pietaxi.PassengerId;
+
 class RideFinished {
 
     private final RideId rideId;

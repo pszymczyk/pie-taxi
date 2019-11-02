@@ -3,6 +3,8 @@ package com.pszymczyk.pietaxi.rides;
 import java.util.Random;
 import java.util.UUID;
 
+import com.pszymczyk.pietaxi.PassengerId;
+
 public class TestFixtures {
 
     private static final Random random = new Random(99);

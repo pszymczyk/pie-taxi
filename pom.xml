@@ -12,6 +12,7 @@
 		<module>app-monolith</module>
 		<module>rides</module>
 		<module>billing</module>
-	</modules>
+        <module>shared-kernel</module>
+    </modules>
 
 </project>

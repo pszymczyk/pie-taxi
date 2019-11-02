@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.pszymczyk.pietaxi.PassengerId;
 import com.pszymczyk.pietaxi.rides.DriverId;
 import com.pszymczyk.pietaxi.rides.Location;
-import com.pszymczyk.pietaxi.rides.PassengerId;
 
 class RequestRideSaga {
 

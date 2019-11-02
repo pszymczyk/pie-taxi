@@ -1,5 +1,7 @@
 package com.pszymczyk.pietaxi.rides;
 
+import com.pszymczyk.pietaxi.PassengerId;
+
 class StartNewRideCommand {
 
     private final PassengerId passengerId;

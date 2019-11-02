@@ -3,6 +3,7 @@ package com.pszymczyk.pietaxi.rides;
 import java.time.Clock;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 class RidesApplicationService {
@@ -29,8 +30,10 @@ class RidesApplicationService {
     void updateLocation(UpdateLocationCommand updateLocationCommand) {
         Ride ride = rideRepository.findById(updateLocationCommand.getRideId()).orElseThrow(RideNotFound::new);
         ride.ping(updateLocationCommand.getLocation(), clock);
+        rideRepository.save(ride);
     }
 
+    @Transactional
     void stop(StopRideCommand stopRideCommand) {
         Ride ride = rideRepository.findById(stopRideCommand.getRideId()).orElseThrow(RideNotFound::new);
         ride.stop(stopRideCommand.getLocation(), clock, rideEvents);

@@ -1,4 +1,4 @@
-package com.pszymczyk.pietaxi.rides;
+package com.pszymczyk.pietaxi;
 
 import java.util.Objects;
 
