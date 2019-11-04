@@ -1,4 +1,4 @@
-package com.pszymczyk.pietaxi.rides.traffic.infrastructure;
+package com.pszymczyk.pietaxi.rides.traffic.infrastructure.rest;
 
 import java.util.HashMap;
 import java.util.Map;

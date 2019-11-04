@@ -4,7 +4,7 @@ import com.pszymczyk.pietaxi.model.PassengerId;
 
 public interface BillingClient {
 
-    enum Status {
+    public enum Status {
         OK,
         BLOCKED
     }

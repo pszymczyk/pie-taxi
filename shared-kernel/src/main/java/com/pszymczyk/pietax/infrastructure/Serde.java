@@ -1,14 +1,17 @@
-package com.pszymczyk.pietaxi.rides.traffic.infrastructure;
+package com.pszymczyk.pietax.infrastructure;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
-@Component
-class Serde {
+public class Serde {
 
     private static final Logger log = LoggerFactory.getLogger(Serde.class);
 
@@ -18,12 +21,21 @@ class Serde {
         this.objectMapper = objectMapper;
     }
 
-    String serialize(Object value) {
+    public String serialize(Object value) {
         try {
             return objectMapper.writeValueAsString(value);
         } catch (JsonProcessingException e) {
             log.error("Error during serialization, value: {}", value);
             return "{ \"errorMessage\": \"Exception during serialization.\" }";
+        }
+    }
+
+    public Map<String, String> deserialize(String payload) {
+        try {
+            return objectMapper.readValue(payload, TypeFactory.defaultInstance().constructMapType(HashMap.class, String.class, String.class));
+        } catch (JsonProcessingException e) {
+            log.error("Error during serialization, value: {}", payload);
+            return Collections.emptyMap();
         }
     }
 }

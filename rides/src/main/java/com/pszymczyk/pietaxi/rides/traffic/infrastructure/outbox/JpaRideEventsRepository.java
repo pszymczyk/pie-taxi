@@ -1,4 +1,4 @@
-package com.pszymczyk.pietaxi.rides.traffic.infrastructure;
+package com.pszymczyk.pietaxi.rides.traffic.infrastructure.outbox;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 import org.springframework.stereotype.Component;
 
+import com.pszymczyk.pietax.infrastructure.Serde;
 import com.pszymczyk.pietaxi.rides.traffic.model.CorruptedRideFinished;
 import com.pszymczyk.pietaxi.rides.traffic.model.RideEvents;
 import com.pszymczyk.pietaxi.rides.traffic.model.RideFinished;

@@ -1,4 +1,4 @@
-package com.pszymczyk.pietaxi.rides.traffic.infrastructure;
+package com.pszymczyk.pietaxi.rides.traffic.infrastructure.outbox;
 
 import java.time.Clock;
 import java.time.Instant;

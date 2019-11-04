@@ -1,10 +1,9 @@
-package com.pszymczyk.pietaxi.rides.traffic.infrastructure;
+package com.pszymczyk.pietaxi.rides.traffic.infrastructure.entities;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -20,10 +19,10 @@ import javax.persistence.Version;
 import org.springframework.stereotype.Component;
 
 import com.pszymczyk.pietaxi.model.PassengerId;
+import com.pszymczyk.pietaxi.model.RideId;
 import com.pszymczyk.pietaxi.rides.traffic.model.DefaultDistanceCalculationPrecisionPolicy;
 import com.pszymczyk.pietaxi.rides.traffic.model.DriverId;
 import com.pszymczyk.pietaxi.rides.traffic.model.Location;
-import com.pszymczyk.pietaxi.model.RideId;
 import com.pszymczyk.pietaxi.rides.traffic.model.Ride;
 import com.pszymczyk.pietaxi.rides.traffic.model.RideRepository;
 

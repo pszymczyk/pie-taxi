@@ -1,4 +1,4 @@
-package com.pszymczyk.pietaxi.rides.traffic.infrastructure;
+package com.pszymczyk.pietaxi.rides.traffic.infrastructure.events;
 
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
