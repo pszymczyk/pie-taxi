@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pszymczyk.pietaxi.model.PassengerId;
-import com.pszymczyk.pietaxi.rides.traffic.model.DriverId;
-import com.pszymczyk.pietaxi.rides.traffic.model.Location;
 import com.pszymczyk.pietaxi.model.RideId;
 import com.pszymczyk.pietaxi.rides.traffic.application.RidesApplicationService;
 import com.pszymczyk.pietaxi.rides.traffic.application.StartNewRideCommand;
 import com.pszymczyk.pietaxi.rides.traffic.application.StopRideCommand;
 import com.pszymczyk.pietaxi.rides.traffic.application.UpdateLocationCommand;
+import com.pszymczyk.pietaxi.rides.traffic.model.DriverId;
+import com.pszymczyk.pietaxi.rides.traffic.model.Location;
 import com.pszymczyk.pietaxi.rides.traffic.model.PassengerAccountBlocked;
 
 @RestController

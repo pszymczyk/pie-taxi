@@ -11,14 +11,6 @@ import java.util.Queue;
 import org.junit.jupiter.api.Test;
 
 import com.pszymczyk.pietaxi.rides.traffic.TestFixtures;
-import com.pszymczyk.pietaxi.rides.traffic.model.CorruptedRideFinished;
-import com.pszymczyk.pietaxi.rides.traffic.model.Distance;
-import com.pszymczyk.pietaxi.rides.traffic.model.DistanceCalculationRequirementsPolicy;
-import com.pszymczyk.pietaxi.rides.traffic.model.Location;
-import com.pszymczyk.pietaxi.rides.traffic.model.Ride;
-import com.pszymczyk.pietaxi.rides.traffic.model.RideAlreadyStarted;
-import com.pszymczyk.pietaxi.rides.traffic.model.RideEvents;
-import com.pszymczyk.pietaxi.rides.traffic.model.RideFinished;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;

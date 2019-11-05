@@ -8,9 +8,6 @@ import java.util.Arrays;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.pszymczyk.pietaxi.rides.traffic.model.PingsPerMinutePolicy;
-import com.pszymczyk.pietaxi.rides.traffic.model.Ride;
-
 import static com.pszymczyk.pietaxi.rides.traffic.TestFixtures.randomLocation;
 
 class PingsPerMinutePolicyTest {

@@ -5,12 +5,12 @@ import java.util.Random;
 import java.util.UUID;
 
 import com.pszymczyk.pietaxi.model.PassengerId;
+import com.pszymczyk.pietaxi.model.RideId;
 import com.pszymczyk.pietaxi.rides.traffic.model.DefaultDistanceCalculationPrecisionPolicy;
 import com.pszymczyk.pietaxi.rides.traffic.model.DistanceCalculationRequirementsPolicy;
 import com.pszymczyk.pietaxi.rides.traffic.model.DriverId;
 import com.pszymczyk.pietaxi.rides.traffic.model.Location;
 import com.pszymczyk.pietaxi.rides.traffic.model.Ride;
-import com.pszymczyk.pietaxi.model.RideId;
 
 public class TestFixtures {
 

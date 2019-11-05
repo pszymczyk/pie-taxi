@@ -5,10 +5,10 @@ import java.time.Clock;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pszymczyk.pietaxi.model.RideId;
 import com.pszymczyk.pietaxi.rides.traffic.model.Ride;
 import com.pszymczyk.pietaxi.rides.traffic.model.RideEvents;
 import com.pszymczyk.pietaxi.rides.traffic.model.RideFactory;
-import com.pszymczyk.pietaxi.model.RideId;
 import com.pszymczyk.pietaxi.rides.traffic.model.RideRepository;
 
 @Component

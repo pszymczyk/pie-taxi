@@ -5,12 +5,6 @@ import java.util.Queue;
 
 import org.junit.jupiter.api.Test;
 
-import com.pszymczyk.pietaxi.billing.model.Account;
-import com.pszymczyk.pietaxi.billing.model.BillingEvents;
-import com.pszymczyk.pietaxi.billing.model.Money;
-import com.pszymczyk.pietaxi.billing.model.Overpayment;
-import com.pszymczyk.pietaxi.billing.model.PassengerAccountActivated;
-import com.pszymczyk.pietaxi.billing.model.PassengerAccountBlocked;
 import com.pszymczyk.pietaxi.model.PassengerId;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,7 +37,9 @@ class AccountTest {
 
         //then
         assertThat(account.isBlocked()).isTrue();
-        assertThat(billingEvents.passengerAccountBlockedEvents).hasSize(1);
+        assertThat(billingEvents.passengerAccountBlockedEvents).hasSize(1)
+                                                               .first()
+                                                               .extracting(PassengerAccountBlocked::getEntityId).isEqualTo(passengerId.getId());
     }
 
     @Test
@@ -58,7 +54,9 @@ class AccountTest {
         //then
         assertThat(account.getDebt()).isEqualTo(Money.of("150"));
         assertThat(account.isBlocked()).isTrue();
-        assertThat(billingEvents.passengerAccountBlockedEvents).hasSize(1);
+        assertThat(billingEvents.passengerAccountBlockedEvents).hasSize(1)
+                                                               .first()
+                                                               .extracting(PassengerAccountBlocked::getEntityId).isEqualTo(passengerId.getId());
     }
 
     @Test
@@ -85,8 +83,8 @@ class AccountTest {
 
         //then
         assertThat(billingEvents.overpaymentEvents).hasSize(1)
-                                                   .first().extracting(Overpayment::getMoney)
-                                                   .isEqualTo(Money.of("30"));
+                                                   .first()
+                                                   .matches(overpayment -> overpayment.getMoney().equals(Money.of("30")) && overpayment.getEntityId().equals(passengerId.getId()));
     }
 
     @Test
@@ -126,7 +124,8 @@ class AccountTest {
 
         //then
         assertThat(account.isBlocked()).isFalse();
-        assertThat(billingEvents.passengerAccountActivatedEvents).hasSize(1);
+        assertThat(billingEvents.passengerAccountActivatedEvents).hasSize(1).first()
+                                                                 .extracting(PassengerAccountActivated::getEntityId).isEqualTo(passengerId.getId());;
     }
 
     @Test

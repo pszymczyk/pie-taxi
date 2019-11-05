@@ -6,13 +6,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import com.pszymczyk.pietaxi.rides.traffic.model.BillingClient;
-import com.pszymczyk.pietaxi.rides.traffic.model.DefaultDistanceCalculationPrecisionPolicy;
-import com.pszymczyk.pietaxi.rides.traffic.model.DistanceCalculationRequirementsPolicy;
-import com.pszymczyk.pietaxi.rides.traffic.model.PassengerAccountBlocked;
-import com.pszymczyk.pietaxi.rides.traffic.model.Ride;
-import com.pszymczyk.pietaxi.rides.traffic.model.RideFactory;
-
 import static com.pszymczyk.pietaxi.rides.traffic.TestFixtures.randomDriver;
 import static com.pszymczyk.pietaxi.rides.traffic.TestFixtures.randomPassenger;
 import static org.assertj.core.api.Assertions.assertThat;

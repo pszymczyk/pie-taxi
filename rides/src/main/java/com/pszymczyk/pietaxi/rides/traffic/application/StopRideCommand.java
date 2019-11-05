@@ -1,7 +1,7 @@
 package com.pszymczyk.pietaxi.rides.traffic.application;
 
-import com.pszymczyk.pietaxi.rides.traffic.model.Location;
 import com.pszymczyk.pietaxi.model.RideId;
+import com.pszymczyk.pietaxi.rides.traffic.model.Location;
 
 public class StopRideCommand {
 
