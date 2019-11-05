@@ -31,18 +31,7 @@ class RideEventsSender {
     @Scheduled(fixedDelay = 1000)
     void send() {
         rideEventsEntityCrudRepository.findAllByProcessedTimeIsNull().forEach(entity -> {
-            try {
-                RidesEvent ridesEvent = new RidesEvent();
-                ridesEvent.eventId = entity.getEventId();
-                ridesEvent.occurrenceTime = entity.getOccurrenceTime();
-                ridesEvent.type = entity.getType();
-                ridesEvent.payload = entity.getPayload();
-                restTemplate.postForEntity(billingUrl + "/events/rides", ridesEvent, Void.class);
-                entity.setProcessedTime(clock.instant());
-                rideEventsEntityCrudRepository.save(entity);
-            } catch (Exception e) {
-                //ignore, send again
-            }
+            //TODO
         });
     }
 }
