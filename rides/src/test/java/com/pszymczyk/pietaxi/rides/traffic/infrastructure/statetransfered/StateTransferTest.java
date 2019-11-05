@@ -34,7 +34,7 @@ class StateTransferTest {
                 + "  \"eventId\": \"6e4294fa-ff43-11e9-8f0b-362b9e155667\",\n"
                 + "  \"occurrenceTime\": \"2007-12-03T10:15:30.00Z\",\n"
                 + "  \"type\": \"PassengerAccountBlocked\",\n"
-                + "  \"payload\": \"{\\\"passengerId\\\": \\\"kazik\\\"}\"\n"
+                + "  \"payload\": \"{\\\"entityId\\\": \\\"kazik\\\"}\"\n"
                 + "}",headers), Void.class);
 
         //then
@@ -50,7 +50,7 @@ class StateTransferTest {
                 + "  \"eventId\": \"6e4294fa-ff43-11e9-8f0b-362b9e155667\",\n"
                 + "  \"occurrenceTime\": \"2007-12-03T10:15:30.00Z\",\n"
                 + "  \"type\": \"PassengerAccountBlocked\",\n"
-                + "  \"payload\": \"{\\\"passengerId\\\": \\\"kazik\\\"}\"\n"
+                + "  \"payload\": \"{\\\"entityId\\\": \\\"kazik\\\"}\"\n"
                 + "}",headers), Void.class);
 
         assertThat(stateTransferredBillingClient.checkPassengerAccount(new PassengerId("kazik"))).isEqualTo(BillingClient.Status.BLOCKED);
@@ -60,7 +60,7 @@ class StateTransferTest {
                 + "  \"eventId\": \"6e4294fa-ff43-11e9-8f0b-362b9e155667\",\n"
                 + "  \"occurrenceTime\": \"2007-12-03T10:15:30.00Z\",\n"
                 + "  \"type\": \"PassengerAccountActivated\",\n"
-                + "  \"payload\": \"{\\\"passengerId\\\": \\\"kazik\\\"}\"\n"
+                + "  \"payload\": \"{\\\"entityId\\\": \\\"kazik\\\"}\"\n"
                 + "}",headers), Void.class);
 
         //then

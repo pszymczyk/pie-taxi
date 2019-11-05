@@ -9,7 +9,6 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>app-monolith</module>
 		<module>rides</module>
 		<module>billing</module>
         <module>shared-kernel</module>
