@@ -33,36 +33,13 @@ class RequestRideSaga {
     }
 
     void handle(DriverAccepted driverAccepted) {
-        driverId = driverAccepted.getDriverId();
-        completeIfPossible();
+
     }
 
     void handle(FriendFound friendFound) {
-        if (friends.size() < 2) {
-            friends.add(friendFound.getPassengerId());
-        }
-
-        if (friends.size() >= 2) {
-            requestRideSagaEvents.publish(new CabIsFull(id));
-        }
-        completeIfPossible();
     }
 
     void timeout() {
-        if (driverId != null) {
-            state = State.COMPLETED;
-            requestRideSagaEvents.publish(new RideAccepted(passengerId, driverId, location, friends));
-        } else {
-            state = State.TIMEOUT;
-            requestRideSagaEvents.publish(new AllDriversBusy(id));
-        }
-    }
-
-    private void completeIfPossible() {
-        if (friends.size() >= 2 && driverId != null) {
-            state = State.COMPLETED;
-            requestRideSagaEvents.publish(new RideAccepted(passengerId, driverId, location, friends));
-        }
     }
 
     @Override
