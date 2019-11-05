@@ -25,16 +25,8 @@ class StateTransferredBillingClient implements BillingClient {
     }
 
     @PostMapping("/events/billing")
-    void handleEvent(@RequestBody BillingEvent billingEvent) throws JsonProcessingException {
-        if ("PassengerAccountBlocked".equalsIgnoreCase(billingEvent.type)) {
-            Map<String, String> payload = serde.deserialize(billingEvent.payload);
-            BlockedPassengerEntity blockedPassengerEntity = new BlockedPassengerEntity();
-            blockedPassengerEntity.setPassengerId(payload.get("entityId"));
-            blockedPassengersCrudRepository.save(blockedPassengerEntity);
-        } else if ("PassengerAccountActivated".equalsIgnoreCase(billingEvent.type)) {
-            Map<String, String> payload = serde.deserialize(billingEvent.payload);
-            blockedPassengersCrudRepository.deleteById(payload.get("entityId"));
-        }
+    void handleEvent(@RequestBody BillingEvent billingEvent) {
+
     }
 
     @Override
