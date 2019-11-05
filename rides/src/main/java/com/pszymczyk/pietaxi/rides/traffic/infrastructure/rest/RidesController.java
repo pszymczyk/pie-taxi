@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,9 +25,12 @@ import com.pszymczyk.pietaxi.rides.traffic.application.RidesApplicationService;
 import com.pszymczyk.pietaxi.rides.traffic.application.StartNewRideCommand;
 import com.pszymczyk.pietaxi.rides.traffic.application.StopRideCommand;
 import com.pszymczyk.pietaxi.rides.traffic.application.UpdateLocationCommand;
+import com.pszymczyk.pietaxi.rides.traffic.model.PassengerAccountBlocked;
 
 @RestController
 class RidesController {
+
+    private static final Logger log = LoggerFactory.getLogger(RidesController.class);
 
     private final RidesApplicationService ridesApplicationService;
 
@@ -144,5 +150,11 @@ class RidesController {
                 new RideId(rideId),
                 new Location(finishRideRequestBody.longitude, finishRideRequestBody.latitude));
         ridesApplicationService.stop(stopRideCommand);
+    }
+
+    @ExceptionHandler(value = { PassengerAccountBlocked.class })
+    @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+    void handleTripNotFound(PassengerAccountBlocked passengerAccountBlocked) {
+        log.debug(passengerAccountBlocked.getMessage());
     }
 }
