@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 class Distance {
 
     static Distance zero() {
@@ -53,5 +55,10 @@ class Distance {
     @Override
     public String toString() {
         return value.toString();
+    }
+
+    @JsonValue
+    public BigDecimal getValue() {
+        return value;
     }
 }

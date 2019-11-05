@@ -2,6 +2,8 @@ package com.pszymczyk.pietaxi.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public abstract class EntityId<ID> {
 
     private final ID id;
@@ -10,6 +12,7 @@ public abstract class EntityId<ID> {
         this.id = id;
     }
 
+    @JsonValue
     public ID getId() {
         return id;
     }

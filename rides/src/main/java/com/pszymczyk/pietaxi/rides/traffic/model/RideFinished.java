@@ -48,27 +48,27 @@ public class RideFinished implements DomainEvent {
         this.endTime = endTime;
     }
 
-    RideId getRideId() {
+    public RideId getRideId() {
         return rideId;
     }
 
-    PassengerId getPassengerId() {
+    public PassengerId getPassengerId() {
         return passengerId;
     }
 
-    DriverId getDriverId() {
+    public DriverId getDriverId() {
         return driverId;
     }
 
-    Distance getDistance() {
+    public Distance getDistance() {
         return distance;
     }
 
-    Instant getStartTime() {
+    public Instant getStartTime() {
         return startTime;
     }
 
-    Instant getEndTime() {
+    public Instant getEndTime() {
         return endTime;
     }
 

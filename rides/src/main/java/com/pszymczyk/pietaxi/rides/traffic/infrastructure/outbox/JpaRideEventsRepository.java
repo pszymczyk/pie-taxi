@@ -3,6 +3,7 @@ package com.pszymczyk.pietaxi.rides.traffic.infrastructure.outbox;
 import java.time.Instant;
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -61,6 +62,7 @@ class JpaRideEventsEntity {
 
     private Instant processedTime;
 
+    @Column( length = 100000 )
     private String payload;
 
     public long getId() {
