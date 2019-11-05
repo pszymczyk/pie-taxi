@@ -1,8 +1,10 @@
 package com.pszymczyk.pietaxi.billing.infrastructure;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -30,5 +32,10 @@ class InMemoryAccountsRepository implements AccountsRepository {
     @Override
     public void save(Account account) {
         db.put(account.getPassengerId(), account);
+    }
+
+    @Override
+    public List<Account> findBlockedAccounts() {
+        return db.values().stream().filter(Account::isBlocked).collect(Collectors.toList());
     }
 }

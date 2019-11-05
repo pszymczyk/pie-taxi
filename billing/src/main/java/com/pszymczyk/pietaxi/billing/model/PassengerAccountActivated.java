@@ -18,7 +18,7 @@ public class PassengerAccountActivated implements DomainEvent {
         this.passengerId = passengerId;
     }
 
-    public PassengerId getPassengerId() {
+    PassengerId getPassengerId() {
         return passengerId;
     }
 

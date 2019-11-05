@@ -25,4 +25,9 @@ public class BillingApplicationService {
         account.charge(cost, billingEvents);
         accountsRepository.save(account);
     }
+
+    public void supplyAccount(SupplyAccountCommand supplyAccountCommand) {
+        Account account = accountsRepository.findByPassengerId(supplyAccountCommand.getPassengerId()).orElseThrow(IllegalArgumentException::new);
+        account.supply(supplyAccountCommand.getMoney(), billingEvents);
+    }
 }

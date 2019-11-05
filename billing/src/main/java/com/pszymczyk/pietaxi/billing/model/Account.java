@@ -68,7 +68,7 @@ public class Account {
         return debt;
     }
 
-    boolean isBlocked() {
+    public boolean isBlocked() {
         return status == Status.BLOCKED;
     }
 
