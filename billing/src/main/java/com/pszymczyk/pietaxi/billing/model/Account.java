@@ -31,7 +31,6 @@ public class Account {
 
     private void blockAccount(BillingEvents billingEvents) {
         status = Status.BLOCKED;
-        billingEvents.publish(new PassengerAccountBlocked(passengerId));
     }
 
     private boolean debtGreaterOrEqualToLimit() {
@@ -50,9 +49,7 @@ public class Account {
     }
 
     private void overpayment(Money supply, BillingEvents billingEvents) {
-        Money overpayment = supply.minus(debt);
         debt = Money.zero();
-        billingEvents.publish(new Overpayment(passengerId, overpayment));
 
         if (isBlocked()) {
             activateAccount(billingEvents);
@@ -61,7 +58,6 @@ public class Account {
 
     private void activateAccount(BillingEvents billingEvents) {
         status = Status.ACTIVE;
-        billingEvents.publish(new PassengerAccountActivated(passengerId));
     }
 
     Money getDebt() {
