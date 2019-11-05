@@ -90,8 +90,8 @@ public class RideFinished implements DomainEvent {
     }
 
     @Override
-    public UUID getEntityId() {
-        return rideId.getId();
+    public String getEntityId() {
+        return rideId.getId().toString();
     }
 
     @Override

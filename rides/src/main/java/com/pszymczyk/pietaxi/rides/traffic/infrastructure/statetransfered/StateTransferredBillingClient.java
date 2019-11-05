@@ -1,7 +1,6 @@
 package com.pszymczyk.pietaxi.rides.traffic.infrastructure.statetransfered;
 
 import java.time.Instant;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -10,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.pszymczyk.pietax.infrastructure.Serde;
 import com.pszymczyk.pietaxi.model.PassengerId;
 import com.pszymczyk.pietaxi.rides.traffic.model.BillingClient;
 
@@ -19,23 +17,23 @@ import com.pszymczyk.pietaxi.rides.traffic.model.BillingClient;
 class StateTransferredBillingClient implements BillingClient {
 
     private final BlockedPassengersCrudRepository blockedPassengersCrudRepository;
-    private final ObjectMapper objectMapper;
+    private final Serde serde;
 
-    public StateTransferredBillingClient(BlockedPassengersCrudRepository blockedPassengersCrudRepository, ObjectMapper objectMapper) {
+    public StateTransferredBillingClient(BlockedPassengersCrudRepository blockedPassengersCrudRepository, Serde serde) {
         this.blockedPassengersCrudRepository = blockedPassengersCrudRepository;
-        this.objectMapper = objectMapper;
+        this.serde = serde;
     }
 
     @PostMapping("/events/billing")
     void handleEvent(@RequestBody BillingEvent billingEvent) throws JsonProcessingException {
         if ("PassengerAccountBlocked".equalsIgnoreCase(billingEvent.type)) {
-            Map<String, String> payload = objectMapper.readValue(billingEvent.payload, TypeFactory.defaultInstance().constructMapType(HashMap.class, String.class, String.class));
+            Map<String, String> payload = serde.deserialize(billingEvent.payload);
             BlockedPassengerEntity blockedPassengerEntity = new BlockedPassengerEntity();
-            blockedPassengerEntity.setPassengerId(payload.get("passengerId"));
+            blockedPassengerEntity.setPassengerId(payload.get("entityId"));
             blockedPassengersCrudRepository.save(blockedPassengerEntity);
         } else if ("PassengerAccountActivated".equalsIgnoreCase(billingEvent.type)) {
-            Map<String, String> payload = objectMapper.readValue(billingEvent.payload, TypeFactory.defaultInstance().constructMapType(HashMap.class, String.class, String.class));
-            blockedPassengersCrudRepository.deleteById(payload.get("passengerId"));
+            Map<String, String> payload = serde.deserialize(billingEvent.payload);
+            blockedPassengersCrudRepository.deleteById(payload.get("entityId"));
         }
     }
 

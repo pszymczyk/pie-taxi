@@ -30,7 +30,6 @@ class RideEventsSender {
 
     @Scheduled(fixedDelay = 1000)
     void send() {
-
         rideEventsEntityCrudRepository.findAllByProcessedTimeIsNull().forEach(entity -> {
             try {
                 RidesEvent ridesEvent = new RidesEvent();
@@ -45,8 +44,6 @@ class RideEventsSender {
                 //ignore, send again
             }
         });
-
-
     }
 }
 

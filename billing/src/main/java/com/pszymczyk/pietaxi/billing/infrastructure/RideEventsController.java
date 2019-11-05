@@ -1,5 +1,6 @@
-package com.pszymczyk.pietaxi.billing;
+package com.pszymczyk.pietaxi.billing.infrastructure;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Map;
 import java.util.UUID;
@@ -8,29 +9,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pszymczyk.pietax.infrastructure.Serde;
-import com.pszymczyk.pietaxi.model.RideId;
+import com.pszymczyk.pietaxi.billing.application.BillingApplicationService;
+import com.pszymczyk.pietaxi.billing.application.SettleRideCommand;
+import com.pszymczyk.pietaxi.model.PassengerId;
 
 @RestController
 class RideEventsController {
 
-    private final BillingService billingService;
+    private final BillingApplicationService billingService;
     private final Serde serde;
 
-    public RideEventsController(BillingService billingService, Serde serde) {
+    public RideEventsController(BillingApplicationService billingService, Serde serde) {
         this.billingService = billingService;
         this.serde = serde;
     }
 
     @PostMapping("/events/rides")
-    void handleEvent(@RequestBody RidesEvent ridesEvent) throws JsonProcessingException {
+    void handleEvent(@RequestBody RidesEvent ridesEvent) {
         if ("RideFinished".equalsIgnoreCase(ridesEvent.type)) {
             Map<String, String> payload = serde.deserialize(ridesEvent.payload);
-            billingService.billRide(new RideId(UUID.fromString(payload.get("entityId"))));
+            //TODOs
+            billingService.settleRide(new SettleRideCommand(
+                    new PassengerId(payload.get("passengerId")),
+                    new BigDecimal(payload.get("distance"))
+            ));
         }
     }
-
 }
 
 class RidesEvent {

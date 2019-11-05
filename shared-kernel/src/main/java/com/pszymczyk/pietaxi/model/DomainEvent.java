@@ -7,7 +7,7 @@ public interface DomainEvent {
 
     UUID getEventId();
 
-    UUID getEntityId();
+    String getEntityId();
 
     Instant getOccurrenceTime();
 }

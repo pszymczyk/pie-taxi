@@ -1,4 +1,4 @@
-package com.pszymczyk.pietaxi.billing;
+package com.pszymczyk.pietaxi.billing.infrastructure;
 
 import java.util.Set;
 
@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pszymczyk.pietaxi.billing.model.DebtorsRegister;
 import com.pszymczyk.pietaxi.model.PassengerId;
 
 @RestController

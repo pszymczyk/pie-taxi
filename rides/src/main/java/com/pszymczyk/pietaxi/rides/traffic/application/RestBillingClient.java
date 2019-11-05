@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import com.pszymczyk.pietaxi.model.PassengerId;
 import com.pszymczyk.pietaxi.rides.traffic.model.BillingClient;
 
-@Component
+// @Component
 class RestBillingClient implements BillingClient {
 
     private final RestTemplate restTemplate;
