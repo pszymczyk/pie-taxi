@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -27,8 +28,7 @@ class MoneyTest {
         return Stream.of(
                 Arguments.of("0.00", "0"),
                 Arguments.of("8.00", "8"),
-                Arguments.of("8.00000", 8),
-                Arguments.of("not blank", false)
+                Arguments.of("8.00000", "8")
         );
     }
 
@@ -69,13 +69,13 @@ class MoneyTest {
         assertThatExceptionOfType(NumberFormatException.class).isThrownBy(() -> Money.of(x));
     }
 
-    @ParameterizedTest
+    @Test
     void Should_throw_NullPointerException_when_try_to_create_money_from_null() {
         //expect
         assertThatExceptionOfType(NullPointerException.class).isThrownBy(() -> Money.of(null));
     }
 
-    @ParameterizedTest
+    @Test
     void Should_be_indiscernible() {
         //when
         Set<Money> moneySet = new HashSet<>();
