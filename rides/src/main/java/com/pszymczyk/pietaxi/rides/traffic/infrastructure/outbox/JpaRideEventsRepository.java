@@ -28,22 +28,12 @@ class JpaRideEventsRepository implements RideEvents {
 
     @Override
     public void publish(CorruptedRideFinished corruptedRideFinished) {
-        JpaRideEventsEntity jpaRideEventsEntity = new JpaRideEventsEntity();
-        jpaRideEventsEntity.setEventId(corruptedRideFinished.getEventId());
-        jpaRideEventsEntity.setOccurrenceTime(corruptedRideFinished.getOccurrenceTime());
-        jpaRideEventsEntity.setType("CorruptedRideFinished");
-        jpaRideEventsEntity.setPayload(serde.serialize(corruptedRideFinished));
-        rideEventsEntityCrudRepository.save(jpaRideEventsEntity);
+        //TODO
     }
 
     @Override
     public void publish(RideFinished rideFinished) {
-        JpaRideEventsEntity jpaRideEventsEntity = new JpaRideEventsEntity();
-        jpaRideEventsEntity.setEventId(rideFinished.getEventId());
-        jpaRideEventsEntity.setOccurrenceTime(rideFinished.getOccurrenceTime());
-        jpaRideEventsEntity.setType("RideFinished");
-        jpaRideEventsEntity.setPayload(serde.serialize(rideFinished));
-        rideEventsEntityCrudRepository.save(jpaRideEventsEntity);
+        //TODO
     }
 }
 
