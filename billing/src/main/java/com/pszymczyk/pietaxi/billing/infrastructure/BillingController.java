@@ -17,6 +17,8 @@ import com.pszymczyk.pietaxi.billing.model.AccountsRepository;
 import com.pszymczyk.pietaxi.billing.model.Money;
 import com.pszymczyk.pietaxi.model.PassengerId;
 
+import lombok.Data;
+
 @RestController
 class BillingController {
 
@@ -43,26 +45,12 @@ class BillingController {
     }
 }
 
+@Data
 class AllDebtorsResponse {
     Set<PassengerId> debtors;
-
-    public Set<PassengerId> getDebtors() {
-        return debtors;
-    }
-
-    public void setDebtors(Set<PassengerId> debtors) {
-        this.debtors = debtors;
-    }
 }
 
+@Data
 class SupplyAccountRequest {
     String money;
-
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money;
-    }
 }

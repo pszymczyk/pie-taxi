@@ -18,6 +18,8 @@ import com.pszymczyk.pietaxi.billing.model.PassengerAccountActivated;
 import com.pszymczyk.pietaxi.billing.model.PassengerAccountBlocked;
 import com.pszymczyk.pietaxi.model.DomainEvent;
 
+import lombok.Data;
+
 @Component
 class RestBillingEventsSender implements BillingEvents {
 
@@ -62,42 +64,11 @@ class RestBillingEventsSender implements BillingEvents {
     }
 }
 
+@Data
 class BillingEvent {
 
     UUID eventId;
     Instant occurrenceTime;
     String type;
     String payload;
-
-    public UUID getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(UUID eventId) {
-        this.eventId = eventId;
-    }
-
-    public Instant getOccurrenceTime() {
-        return occurrenceTime;
-    }
-
-    public void setOccurrenceTime(Instant occurrenceTime) {
-        this.occurrenceTime = occurrenceTime;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getPayload() {
-        return payload;
-    }
-
-    public void setPayload(String payload) {
-        this.payload = payload;
-    }
 }
