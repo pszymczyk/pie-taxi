@@ -12,6 +12,7 @@
 		<module>rides</module>
 		<module>billing</module>
         <module>shared-kernel</module>
+        <module>legacy</module>
     </modules>
 
 </project>
