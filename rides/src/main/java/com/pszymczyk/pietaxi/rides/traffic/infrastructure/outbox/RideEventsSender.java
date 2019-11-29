@@ -4,31 +4,23 @@ import java.time.Clock;
 import java.time.Instant;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 @Component
 class RideEventsSender {
 
     private final RideEventsEntityCrudRepository rideEventsEntityCrudRepository;
+    private final RideEventsQueue rideEventsQueue;
     private final Clock clock;
-    private final RestTemplate restTemplate;
-    private final String billingUrl;
 
-    public RideEventsSender(
-            RideEventsEntityCrudRepository rideEventsEntityCrudRepository,
-            Clock clock,
-            RestTemplate restTemplate,
-            @Value("${billing.url:http://localhost:8090}") String billingUrl) {
+    public RideEventsSender(RideEventsEntityCrudRepository rideEventsEntityCrudRepository, RideEventsQueue rideEventsQueue, Clock clock) {
         this.rideEventsEntityCrudRepository = rideEventsEntityCrudRepository;
+        this.rideEventsQueue = rideEventsQueue;
         this.clock = clock;
-        this.restTemplate = restTemplate;
-        this.billingUrl = billingUrl;
     }
 
-    @Scheduled(fixedDelay = 1000)
+    //TODO
+    // @Scheduled(fixedDelay = 1000)
     void send() {
         rideEventsEntityCrudRepository.findAllByProcessedTimeIsNull().forEach(entity -> {
             try {
@@ -37,7 +29,7 @@ class RideEventsSender {
                 ridesEvent.occurrenceTime = entity.getOccurrenceTime();
                 ridesEvent.type = entity.getType();
                 ridesEvent.payload = entity.getPayload();
-                restTemplate.postForEntity(billingUrl + "/events/rides", ridesEvent, Void.class);
+                rideEventsQueue.add(ridesEvent);
                 entity.setProcessedTime(clock.instant());
                 rideEventsEntityCrudRepository.save(entity);
             } catch (Exception e) {

@@ -12,11 +12,11 @@ public class CorruptedRideFinished implements DomainEvent {
     private final Instant occurrenceTime;
     private final RideId rideId;
 
-    CorruptedRideFinished(Instant occurrenceTime, RideId rideId) {
+    public CorruptedRideFinished(Instant occurrenceTime, RideId rideId) {
         this(UUID.randomUUID(), occurrenceTime, rideId);
     }
 
-    CorruptedRideFinished(UUID eventId, Instant occurrenceTime, RideId rideId) {
+    public CorruptedRideFinished(UUID eventId, Instant occurrenceTime, RideId rideId) {
         this.eventId = eventId;
         this.occurrenceTime = occurrenceTime;
         this.rideId = rideId;

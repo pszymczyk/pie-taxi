@@ -6,15 +6,15 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-class Distance {
+public class Distance {
 
-    static Distance zero() {
+    public static Distance zero() {
         return new Distance(BigDecimal.ZERO);
     }
 
     private final BigDecimal value;
 
-    Distance(Location x, Location y) {
+    public Distance(Location x, Location y) {
         this.value = distance(x, y);
     }
 
@@ -22,7 +22,7 @@ class Distance {
         this.value = value.setScale(2, RoundingMode.HALF_UP);
     }
 
-    Distance and(Distance other) {
+    public Distance and(Distance other) {
         return new Distance(this.value.add(other.value));
     }
 
