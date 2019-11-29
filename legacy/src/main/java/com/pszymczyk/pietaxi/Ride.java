@@ -23,7 +23,7 @@ class Ride {
     private BigDecimal cost;
     private Instant startTime;
 
-    BigDecimal distance;
+    private BigDecimal distance;
     private boolean vipTaxiRide;
     private BigDecimal perKmFee;
     private BigDecimal perMinuteFee;
